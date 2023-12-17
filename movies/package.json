@@ -1,67 +1,56 @@
 {
-  "name": "movies",
+  "name": "moviesapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.16",
-    "@mui/material": "^5.14.17",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "firebase": "^10.6.0",
-    "firebase-tools": "^12.9.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.47.0",
-    "react-query": "^3.39.3",
-    "react-router-dom": "^6.18.0",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4"
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.4.0",
+    "firebase": "^9.14.0",
+    "prop-types": "^15.7.2",
+    "react": "^18.0.1",
+    "react-dom": "^18.0.1",
+    "react-hook-form": "^7.34.2",
+    "react-multi-carousel": "^2.8.2",
+    "react-query": "^3.13.0",
+    "react-router-dom": "6.3.0",
+    "react-scripts": "5.0.0",
+    "react-slideshow-image": "^4.0.5"
   },
   "scripts": {
+    "storybook": "start-storybook -p 6006 -s public",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.6",
-    "@storybook/preset-create-react-app": "^7.4.6",
-    "@storybook/react": "^7.4.6",
-    "@storybook/react-webpack5": "^7.4.6",
-    "@storybook/testing-library": "^0.2.2",
-    "babel-plugin-named-exports-order": "^0.0.2",
-    "eslint-plugin-storybook": "^0.6.15",
-    "prop-types": "^15.8.1",
-    "storybook": "^7.4.6",
-    "webpack": "^5.89.0"
-  }
+    "@storybook/addon-actions": "^6.4.18",
+    "@storybook/addon-links": "^6.4.18",
+    "@storybook/node-logger": "^6.4.18",
+    "@storybook/preset-create-react-app": "^4.0.0",
+    "@storybook/react": "^6.4.18",
+    "html-webpack-plugin": "^5.5.0"
+  },
+  "proxy" : "http://localhost:8080"
 }

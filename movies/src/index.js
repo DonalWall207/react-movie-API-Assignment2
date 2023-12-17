@@ -20,7 +20,7 @@ import MovieActorDetailsPage from "./pages/movieActorsDetailsPage";
 import FavoriteMovieActorsPage from "./pages/favoriteMovieActorsPage";
 import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
-import PrivateRoutes from "./components/privateRoutes/"
+import PrivateRoutes from "./privateRoutes";
 
 const queryClient = new QueryClient({
   defaultOptions: {

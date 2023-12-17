@@ -2,12 +2,12 @@ import React from "react";
 import PageTemplate from "../components/templateMovieActorsListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import {getMovieActors} from '../api/tmdb-api';
+import {getActors} from '../api/movie-api';
 import { useParams } from "react-router-dom";
 
 const MovieActorsPage = (props) => {
   const {pageNumber} = useParams();
-    const {data, error, isLoading, isError}  = useQuery('actors', getMovieActors)
+    const {data, error, isLoading, isError}  = useQuery('actors', getActors)
 
     console.log("pageNumber" + pageNumber)
   
