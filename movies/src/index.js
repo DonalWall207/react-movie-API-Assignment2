@@ -20,6 +20,7 @@ import MovieActorDetailsPage from "./pages/movieActorsDetailsPage";
 import FavoriteMovieActorsPage from "./pages/favoriteMovieActorsPage";
 import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
+import AuthContextProvider from "./contexts/authContext";
 import PrivateRoutes from "./privateRoutes";
 
 const queryClient = new QueryClient({
@@ -36,9 +37,11 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <AuthContextProvider>
         <SiteHeader />
         <MoviesContextProvider>
         <Routes>
+          <Route element={PrivateRoutes}/>
           <Route path="/movies/favorites" element={<FavoriteMoviesPage /> }/>
           <Route path="/movies/upcoming" element={<UpcomingMovies />} />
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
@@ -60,6 +63,7 @@ const App = () => {
           <Route path="/users/login" element={<LoginPage />} />
         </Routes>
         </MoviesContextProvider>
+        </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
