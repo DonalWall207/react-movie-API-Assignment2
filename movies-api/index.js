@@ -4,6 +4,8 @@ import moviesRouter from './api/movies';
 import genresRouter from './api/genres';
 import usersRouter from './api/users';
 import actorsRouter from './api/actors';
+import upcomingRouter from './api/upcomingMovies';
+import topRouter from './api/topMovies'
 import './db';
 import './initialise-dev';
 //import session from 'express-session';
@@ -24,7 +26,10 @@ app.use(express.json());
 app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/actors', actorsRouter);
+app.use('/api/upcoming',upcomingRouter);
+app.use('/api/top', topRouter);
 app.use('/api/movies', passport.authenticate('jwt', {session:false}), moviesRouter);
+
 
 app.listen(port, () => {
   console.info(`Server running at ${port}`);

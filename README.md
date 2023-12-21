@@ -1,104 +1,111 @@
-# Assignment 1 - ReactJS app.
+# Assignment 2 - Web API.
 
 Name: Donal Wall
 
-## Overview.
-
-This a React App that uses TMDB(The Movie Database) API Key to call over information from this website, and display it in my react app that I created
-
-### Features.
-
-+ New Trending Movies Page
-+ New Top Rated Movies page
-+ Updated Homepage(With Pagination and New Filtering Options)
-+ New Similar Movies Page
-+ Movie Actors Page and Move Actors Details Page
-+ Movies are linked to specific actors(On Actor Details page)
-+ New Movie Actors Filter
-+ Login and SignUp Page Added(Authenication Using Firebase was attempted)
-+ An attempt Private Routes added to Movies favorites page
+## Features.
+ 
+ + Actors endpoint on movies-api.
+ + Modified the movies to call from the movie-api. 
+ + Private/Protected Routes on the favourites movies page.
+ + Sign up and Login functions created to use stored data in my MongoDB.
 
 ## Setup requirements.
 
-No non-standerd setup options
+Here is how to clone the repo and install it.
 
-## API endpoints.
++ First begin by cloneing the repo using the following command:
 
-+ movies/trending -  A list of trending movies
-+ movies/:id/similar - A list of similar movies based on a specifc movie
-+ movies/toprated -  A list of the top rated movies of all time
-+ movies/now-playing - A list of movies that are now playing in cinemas
-+ actors/ - A list of movie actors
-+ actors/:id - A Actor details page, and the movies they are in (filmogrophy)
-+ page=:pageNumber - Used for pagination on the Discover Movies page
-+ users/signup - A sign up form
-+ users/login - A login Form(Attempted Using Authenication from Firebase)
+```bat
+git clone http:\https://github.com/DonalWall207/react-movie-API-Assignment2.git
+```
+​
++ Followed by installation using this command:
+​
+```bat
+git install
+```
+​
+## API Configuration
 
-## Routing.
+To create this, I had to create an .env file with the following content
 
-+ movies/trending - Displays a movies page with trending movies
-+ movies/:id/similar - Displays a page of similar movies to a certain movie
-+ movies/toprated - Displays a list of top rated movies of all time
-+ movies/now-playing - Displays a list of movies playing now in cinemas
-+ actors/ - Displays a list of popular movie actors
-+ actors/:id - Displays a page with actor details and the movies they are in (filmogrophy)
-+ users/signup - Displays a Signup page
-+ users/login - Displays a Login Page
+'''bat
+_____________________
+NODE_ENV=development
+PORT=8080
+HOST=localhost
+MONGO_DB=mongodb+srv://donal:puddiner@movies.vxooovd.mongodb.net/movies?retryWrites=true&w=majority
+TMDB_KEY=20d56a52b43158187c0a8ddf65fc6587
+SECRET=ilikecake
+______________________
 
-## Images of my pages
-![image](./movies/images/loginpage.png)
->Login Page taking in email and password. Not fully working
+'''
 
-![image](./movies/images/signuppage.png)
->Sign up page taking an email and password. Not fully working
+## API Design
 
-![image](./movies/images/firebase%20screenschot.png)
->Firebase React App Image
+- /api/movies | GET | Gets a list of movies 
+- /api/movies/{movieid} | GET | Gets a single movie 
+- /api/movies/{movieid}/reviews | GET | Get all reviews for movie 
+- /api/movies/{movieid}/reviews | POST | Create a new review for Movie 
+- /api/actors | GET | Get a list of actors
+- /api/actors/{actorid} | GET | Gets a single actor
+- /api/genres | GET | Gets the genres for movies
 
-![image](./movies/images/updatedhomepage.png)
->Updated Home Page with Pagination and new filtering options
+## Security and Authentication
 
-![image](./movies/images/image.png)
->Pagination on the homepage is showcased here
++ Login and signup 
++ Private Routes on the favorites movies page
 
-![image](./movies/images/upcomingmoviespage.png)
->Upcoming movies page
+## Integrating with React App
 
-![image](./movies/images/favouritesmoviepage.png)
->Favourites Movie page(Private routes not implemented)
+~~~Javascript
+export const getMovies = () => {
+    return fetch(
+       '/api/movies',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
 
-![image](./movies/images/moviedetailspage.png)
->Updated Movie details page with new buttons
+  export const getGenres = () => {
+    return fetch(
+       '/api/genres',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
 
-![image](./movies/images/similarmoviespage.png)
->New Similar Movies page
+  export const getActors = () => {
+    return fetch(
+       '/api/actors',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
 
-![image](./movies/images/topratedmovies.png)
->New Top rated Movies Page
+  export const getTopMovies = () => {
+    return fetch(
+       '/api/top',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
 
-![image](./movies/images/nowplayingpage.png)
->New Now-Playing movies page
+export const getUpcomingMovies = () => {
+    return fetch(
+       '/api/upcoming',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+​
+~~~
 
-![image](./movies/images/trendingmoviespage.png)
->New Trending Movies Page
+## Independent learning (if relevant)
 
-![image](./movies/images/actorslistpage.png)
->List of popular movie actors
-
-![image](./movies/images/actordetailspage.png)
->Specific actor details page
-
-![image](./movies/images/specificactorfilms.png)
->Specific actors filmogrophy displayed
-
-
-## Independent learning (If relevant).
-
-Firebase - https://firebase.google.com/docs?gclid=CjwKCAiAksyNBhAPEiwAlDBeLFmJbo_e3-ogmR35UAUMkE9IIanL7VSwEQbkimCxlwelRP1Ae2hmqBoC1H8QAvD_BwE&gclsrc=aw.ds
-
-https://firebase.google.com/docs/web/setup
-
-Pagination - https://mui.com/material-ui/react-pagination/
-
-https://hygraph.com/blog/react-pagination
-
+N/A

@@ -7,6 +7,10 @@ import genreModel from '../api/genres/genresModel';
 import genres from './genres.js';
 import actorModel from '../api/actors/actorModel';
 import actors from './actors.js';
+import upcomingModel from '../api/upcomingMovies/upcomingModel';
+import upcoming from './upcoming.js';
+
+
 
 dotenv.config();
 
@@ -58,10 +62,36 @@ async function loadActors() {
   }
 }
 
+export async function loadUpcomingMovies() {
+  console.log('load upcoming movies data');
+  console.log(upcoming.length);
+  try {
+    await upcomingModel.deleteMany();
+    await upcomingModel.collection.insertMany(upcoming);
+    console.info(`${upcoming.length} Upcoming Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load Upcoming Movies Data: ${err}`);
+  }
+}
+
+export async function loadTopMovies() {
+  console.log('load seed data');
+  console.log(topMovies.length);
+  try {
+    await topMoviesModel.deleteMany();
+    await topMoviesModel.collection.insertMany(topMovies);
+    console.info(`${topMovies.length} Top Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+
 // eslint-disable-next-line no-undef
 if (process.env.SEED_DB) {
   loadUsers();
   loadGenres();//you may not need this line if you skipped the exercises
   loadMovies();//ADD THIS LINE
   loadActors();
+  loadUpcomingMovies();
+  loadTopMovies();
 }
